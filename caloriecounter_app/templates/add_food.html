@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Food - Calorie Counter{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Add Food Item</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="mb-4">
+            <label for="{{ form.name.id_for_label }}" class="block text-gray-700 font-semibold mb-2">
+                Food Name
+            </label>
+            {{ form.name }}
+            {% if form.name.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.name.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="mb-6">
+            <label for="{{ form.calories.id_for_label }}" class="block text-gray-700 font-semibold mb-2">
+                Calories
+            </label>
+            {{ form.calories }}
+            {% if form.calories.errors %}
+            <div class="text-red-500 text-sm mt-1">{{ form.calories.errors }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="flex space-x-4">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg flex-1 transition duration-200">
+                Add Food
+            </button>
+            <a href="{% url 'index' %}" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg flex-1 text-center transition duration-200">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

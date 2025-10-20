@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Reset Calories - Calorie Counter{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold text-red-600 mb-6">Reset Today's Calories</h1>
+    
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+        <p class="text-red-800 font-semibold">Warning: This action cannot be undone!</p>
+        <p class="text-gray-700 mt-2">This will delete all food items added today and reset your calorie count to zero.</p>
+    </div>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="flex space-x-4">
+            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg flex-1 transition duration-200">
+                Yes, Reset All
+            </button>
+            <a href="{% url 'index' %}" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg flex-1 text-center transition duration-200">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

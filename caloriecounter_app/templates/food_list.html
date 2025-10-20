@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}All Food Items - Calorie Counter{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">All Food Items</h1>
+        <a href="{% url 'index' %}" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Back to Today
+        </a>
+    </div>
+
+    {% if food_items %}
+    <div class="bg-white border border-gray-200 rounded-lg">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for food in food_items %}
+            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition duration-200">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold text-gray-800">{{ food.name }}</h3>
+                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-sm font-semibold">
+                        {{ food.calories }} cal
+                    </span>
+                </div>
+                <p class="text-gray-600 text-sm">Added on {{ food.created_at|date:"M j, Y" }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-8">
+        <p class="text-gray-500 text-lg">No food items in the database.</p>
+        <a href="{% url 'add_food' %}" class="inline-block mt-4 text-blue-500 hover:text-blue-700 font-semibold">
+            Add your first food item →
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

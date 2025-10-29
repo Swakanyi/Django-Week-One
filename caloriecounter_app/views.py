@@ -6,8 +6,7 @@ from django.contrib import messages
 from django.utils import timezone
 
 # Create your views here.
-# def calorie(request):
-#     return HttpResponse("Calorie Counter")
+
 
 def index(request):
     
